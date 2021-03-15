@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, useEffect } from 'react';
 
 // STYLED COMPONENTS
 import { StyledInputContainer, StyledInput } from './CurrencyInput.styles';
@@ -9,10 +9,11 @@ interface Props
     'defaultValue' | 'value' | 'onChange'
   > {
   icon?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
-  onChange?: (value?: string) => void;
-  defaultValue?: string;
-  value?: string;
+  onChange: (value: string) => void;
+  value: string;
 }
+
+const CURRENCY_REGEX = /^[0-9]+(\.[0-9]{2})?$/;
 
 export const CurrencyInput = ({
   icon: Icon,
@@ -21,6 +22,18 @@ export const CurrencyInput = ({
   ...restProps
 }: Props) => {
   const hasIcon = !!Icon;
+
+  useEffect(() => {
+    if (!value || CURRENCY_REGEX.test(value)) return;
+
+    if (value.includes(',')) {
+      return onChange(value.replace(/,/g, ''));
+    }
+
+    if (!Number.isNaN(Number(value))) return;
+
+    onChange('');
+  }, [value, onChange]);
 
   return (
     <StyledInputContainer>
@@ -34,7 +47,7 @@ export const CurrencyInput = ({
         decimalScale={value?.includes('.') ? 2 : 0}
         maxLength={15}
         $withIcon={hasIcon}
-        onValueChange={onChange}
+        onValueChange={value => onChange(value || '')}
         value={value}
         {...restProps}
       />

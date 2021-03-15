@@ -60,7 +60,7 @@ export const MainPage = () => {
                 icon={DollarSignIcon}
                 placeholder="25,000"
                 value={amount}
-                onChange={value => setAmount(value || '')}
+                onChange={setAmount}
               />
             </FormGroup>
 
