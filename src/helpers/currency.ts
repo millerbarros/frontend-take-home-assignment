@@ -9,8 +9,12 @@
  */
 export const formatCurrency = (value: string | number) => {
   const currencyString = typeof value === 'number' ? value.toString() : value;
-  const currencyValue = typeof value === 'string' ? Number(value) : value;
+  let currencyValue = typeof value === 'string' ? Number(value) : value;
   const hasDecimal = currencyString.includes('.');
+
+  if (Number.isNaN(currencyValue)) {
+    currencyValue = 0;
+  }
 
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
