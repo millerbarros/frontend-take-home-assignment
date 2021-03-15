@@ -5,8 +5,9 @@ import { formatMonth, formatYear, monthsDiff } from '~/helpers/date';
 import { formatCurrency } from '~/helpers/currency';
 
 // COMPONENTS
-import { Card, CardHeader } from '~/components/Card';
+import { Card } from '~/components/Card';
 import { CurrencyInput } from '~/components/CurrencyInput';
+import { GoalAvatar } from '~/components/GoalAvatar';
 import { FormGroup } from '~/components/FormGroup';
 import { MonthInput } from '~/components/MonthInput';
 import { DefaultLayout } from '~/layouts/Default';
@@ -45,7 +46,7 @@ export const MainPage = () => {
       </StyledPageTitle>
 
       <Card>
-        <CardHeader
+        <GoalAvatar
           icon={HouseIcon}
           title="Buy a house"
           subtitle="Saving goal"

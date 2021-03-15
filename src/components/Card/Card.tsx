@@ -1,8 +1,10 @@
-import React, { PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 
 // STYLED COMPONENTS
 import { StyledCard } from './Card.styles';
 
-export const Card = ({ children }: PropsWithChildren<{}>) => {
-  return <StyledCard>{children}</StyledCard>;
+type Props = HTMLAttributes<HTMLDivElement>;
+
+export const Card = (props: Props) => {
+  return <StyledCard {...props} />;
 };
