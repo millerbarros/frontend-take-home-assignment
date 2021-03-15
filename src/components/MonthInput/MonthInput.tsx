@@ -18,7 +18,7 @@ import {
 
 // STYLES
 import {
-  StyledHiddenInput,
+  StyledHiddenButton,
   StyledMonthInputContainer,
   StyledMonthInputContent,
   StyledMonthInputController,
@@ -33,9 +33,10 @@ import AngleRightIcon from '~/assets/icons/angle-right.svg';
 interface Props {
   value?: string;
   onChange?: (value: string) => void;
+  tabIndex?: number;
 }
 
-export const MonthInput = ({ value, onChange }: Props) => {
+export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
   const [isoDate, setIsoDate] = useState(new Date().toISOString());
   const [focussed, setFocus] = useState(false);
   const [focusing, setFocusing] = useState(false);
@@ -134,10 +135,11 @@ export const MonthInput = ({ value, onChange }: Props) => {
         applyFocus();
       }}
     >
-      <StyledHiddenInput
+      <StyledHiddenButton
         ref={hiddenInputRef}
         onFocus={() => setFocus(true)}
         onBlur={() => !focusing && setFocus(false)}
+        tabIndex={tabIndex}
       />
 
       <StyledMonthInputController

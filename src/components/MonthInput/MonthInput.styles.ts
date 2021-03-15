@@ -13,7 +13,7 @@ interface ControllerProps {
   $disabled?: boolean;
 }
 
-export const StyledHiddenInput = styled.input`
+export const StyledHiddenButton = styled.button`
   width: 0;
   height: 0;
   opacity: 0;
