@@ -1,20 +1,21 @@
-import React, { PropsWithChildren } from 'react';
+import React, { HTMLAttributes } from 'react';
 
 // STYLED COMPONENTS
 import { StyledFormGroup, StyledFormGroupLabel } from './FormGroup.styles';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   label: string;
   htmlFor?: string;
 }
 
 export const FormGroup = ({
-  children,
   label,
-  htmlFor
-}: PropsWithChildren<Props>) => {
+  htmlFor,
+  children,
+  ...restProps
+}: Props) => {
   return (
-    <StyledFormGroup>
+    <StyledFormGroup {...restProps}>
       <StyledFormGroupLabel title={label} htmlFor={htmlFor}>
         {label}
       </StyledFormGroupLabel>
