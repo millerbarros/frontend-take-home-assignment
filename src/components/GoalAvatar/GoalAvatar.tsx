@@ -9,7 +9,7 @@ import {
   StyledGoalAvatarSubtitle
 } from './GoalAvatar.styles';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   icon?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
   title?: string;
   subtitle?: string;
