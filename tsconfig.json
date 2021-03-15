@@ -9,10 +9,13 @@
     "noImplicitAny": true,
     "outDir": "./dist/",
     "sourceMap": true,
+    "skipLibCheck": true,
+    "strict": true,
     "target": "es6",
     "paths": {
       "~/*": ["./*"]
     }
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*"],
+  "exclude": ["jest.config.js"]
 }
