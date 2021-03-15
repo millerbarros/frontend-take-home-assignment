@@ -1,3 +1,5 @@
+const jestModuleNameMapper = require('jest-module-name-mapper');
+
 module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
@@ -8,7 +10,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
   moduleNameMapper: {
-    '\\.(svg|jpg|png|css)$': '<rootDir>/spec/empty-module.js'
+    '\\.(svg|jpg|png|css)$': '<rootDir>/spec/empty-module.js',
+    ...jestModuleNameMapper.default('tsconfig.json')
   },
   setupFilesAfterEnv: ['<rootDir>spec/setup.js'],
   moduleDirectories: ['node_modules', 'src']
