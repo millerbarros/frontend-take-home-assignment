@@ -9,7 +9,7 @@ const colorThemeFactory = (value: string): theme.ThemeSet => {
 };
 
 export const BREAKPOINTS = {
-  xs: 0,
+  xs: '0px',
   sm: '768px',
   md: '990px',
   lg: '1280px'
