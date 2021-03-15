@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./src",
+    "checkJs": false,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
     "outDir": "./dist/",
     "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es6",
-    "jsx": "react",
-    "allowJs": true,
-    "checkJs": false
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": ["./src/**/*"]
 }

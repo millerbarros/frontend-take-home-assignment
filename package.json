@@ -4,12 +4,17 @@
   "description": "Origin Frontend Challenge",
   "main": "src/index.ts",
   "dependencies": {
+    "@types/styled-theming": "^2.2.5",
     "acorn": "^7.1.1",
     "react": "^16.13.1",
+    "react-currency-input-field": "^3.3.0",
     "react-dom": "^16.13.1",
-    "styled-components": "^4.4.1"
+    "styled-components": "^5.2.1",
+    "styled-normalize": "^8.0.7",
+    "styled-theming": "^2.2.0"
   },
   "devDependencies": {
+    "@svgr/parcel-plugin-svgr": "^5.5.0",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.27",
