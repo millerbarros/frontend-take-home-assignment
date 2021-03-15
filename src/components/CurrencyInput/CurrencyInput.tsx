@@ -9,7 +9,7 @@ interface Props
     'defaultValue' | 'value' | 'onChange'
   > {
   icon?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
-  onChange?: (value: string) => void;
+  onChange?: (value?: string) => void;
   defaultValue?: string;
   value?: string;
 }
@@ -31,7 +31,7 @@ export const CurrencyInput = ({
         decimalSeparator="."
         groupSeparator=","
         allowNegativeValue={false}
-        decimalScale={value.includes('.') ? 2 : 0}
+        decimalScale={value?.includes('.') ? 2 : 0}
         maxLength={15}
         $withIcon={hasIcon}
         onValueChange={onChange}
