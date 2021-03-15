@@ -9,7 +9,6 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: ${toREM('320px')};
   height: ${toREM('56px')};
   padding: 0 ${SPACING.md};
   color: ${COLOR.neutralWhite};

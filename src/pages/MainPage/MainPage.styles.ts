@@ -42,7 +42,7 @@ export const StyledMainPageFormGrid = styled.div`
   grid-template-columns: 1fr;
   gap: ${SPACING.sm};
 
-  ${breakpointMin.lg`
+  ${breakpointMin.md`
     grid-template-columns: 1.12fr .88fr;
   `}
 `;
@@ -53,4 +53,8 @@ export const StyledInfoPanel = styled(InfoPanel)`
 
 export const StyledButton = styled(Button)`
   margin-top: ${SPACING.lg};
+
+  ${breakpointMin.md`
+    max-width: ${toREM('320px')};
+  `}
 `;
