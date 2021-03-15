@@ -10,7 +10,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
   moduleNameMapper: {
-    '\\.(svg|jpg|png|css)$': '<rootDir>/spec/empty-module.js',
+    '\\.(jpg|png|css)$': '<rootDir>/spec/empty-asset.js',
+    '\\.(svg)$': '<rootDir>/spec/empty-component.js',
     ...jestModuleNameMapper.default('tsconfig.json')
   },
   setupFilesAfterEnv: ['<rootDir>spec/setup.js'],
