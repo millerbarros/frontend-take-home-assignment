@@ -3,7 +3,8 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
+  HTMLAttributes
 } from 'react';
 
 // HELPERS
@@ -30,14 +31,29 @@ import {
 import AngleLeftIcon from '~/assets/icons/angle-left.svg';
 import AngleRightIcon from '~/assets/icons/angle-right.svg';
 
-interface Props {
-  value?: string;
-  onChange?: (value: string) => void;
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  value: string;
+  onChange: (value: string) => void;
   tabIndex?: number;
+  focusControllerTestId?: string;
+  increaseControllerTestId?: string;
+  decreaseControllerTestId?: string;
+  monthDisplayTestId?: string;
+  yearDisplayTestId?: string;
 }
 
-export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
-  const [isoDate, setIsoDate] = useState(new Date().toISOString());
+export const MonthInput = ({
+  value,
+  onChange,
+  tabIndex,
+  focusControllerTestId,
+  increaseControllerTestId,
+  decreaseControllerTestId,
+  monthDisplayTestId,
+  yearDisplayTestId,
+  ...restProps
+}: Props) => {
+  const [isoDate, setIsoDate] = useState(value);
   const [focussed, setFocus] = useState(false);
   const [focusing, setFocusing] = useState(false);
 
@@ -99,30 +115,16 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
     if (!inputElement) return;
 
     const keypressListener = (e: KeyboardEvent) => {
-      if (!e.isTrusted || e.ctrlKey || e.altKey) return;
-
-      let key = e.key;
-
-      if (!key) {
-        const keyCode = e.which || e.keyCode;
-
-        if (keyCode === 37) {
-          key = 'ArrowLeft';
-        }
-
-        if (keyCode === 39) {
-          key = 'ArrowRight';
-        }
-      }
+      const key = e.key;
 
       if (key === 'ArrowLeft') return decreaseMonth();
       if (key === 'ArrowRight') return increaseMonth();
     };
 
-    inputElement.addEventListener('keyup', keypressListener, true);
+    inputElement.addEventListener('keydown', keypressListener, true);
 
     return () => {
-      inputElement.removeEventListener('keyup', keypressListener, true);
+      inputElement.removeEventListener('keydown', keypressListener, true);
     };
   }, [focussed, increaseMonth, decreaseMonth]);
 
@@ -134,11 +136,13 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
         setFocusing(false);
         applyFocus();
       }}
+      {...restProps}
     >
       <StyledHiddenButton
         ref={elRef => (hiddenButtonRef.current = elRef)}
         onFocus={() => setFocus(true)}
         onBlur={() => !focusing && setFocus(false)}
+        data-testid={focusControllerTestId}
         tabIndex={tabIndex}
       />
 
@@ -146,19 +150,25 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
         type="button"
         onClick={decreaseMonth}
         $disabled={!canDecrease}
+        data-testid={decreaseControllerTestId}
         tabIndex={-1}
       >
         <AngleLeftIcon />
       </StyledMonthInputController>
 
       <StyledMonthInputContent>
-        <StyledMonthInputMonth>{formatedMonth}</StyledMonthInputMonth>
-        <StyledMonthInputYear>{formatedYear}</StyledMonthInputYear>
+        <StyledMonthInputMonth data-testid={monthDisplayTestId}>
+          {formatedMonth}
+        </StyledMonthInputMonth>
+        <StyledMonthInputYear data-testid={yearDisplayTestId}>
+          {formatedYear}
+        </StyledMonthInputYear>
       </StyledMonthInputContent>
 
       <StyledMonthInputController
         type="button"
         onClick={increaseMonth}
+        data-testid={increaseControllerTestId}
         tabIndex={-1}
       >
         <AngleRightIcon />

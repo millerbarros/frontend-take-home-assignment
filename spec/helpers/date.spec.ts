@@ -98,9 +98,9 @@ describe('Date helpers', () => {
     });
 
     it('When an empty string is passed, expect a Date with the current date increased', () => {
-      const increasedDate = getIncreasedDate();
+      const increasedMonth = getIncreasedDate().getMonth();
 
-      expect(increaseDateMonth('')).toEqual(increasedDate);
+      expect(increaseDateMonth('').getMonth()).toEqual(increasedMonth);
     });
   });
 
@@ -137,9 +137,9 @@ describe('Date helpers', () => {
     });
 
     it('When an empty string is passed, expect a Date with the current date decreased', () => {
-      const decreasedDate = getDecreasedDate();
+      const decreasedMonth = getDecreasedDate().getMonth();
 
-      expect(decreaseDateMonth('')).toEqual(decreasedDate);
+      expect(decreaseDateMonth('').getMonth()).toEqual(decreasedMonth);
     });
   });
 
@@ -168,6 +168,15 @@ describe('Date helpers', () => {
     it('When a date string with a past month is passed, expect false', () => {
       const date = getDecreasedDate();
       const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDay();
+
+      expect(isFutureMonth(`${year}-${month}-${day}`)).toEqual(false);
+    });
+
+    it('When a date string with a past year is passed, expect false', () => {
+      const date = increaseDateMonth(new Date());
+      const year = date.getFullYear() - 1;
       const month = date.getMonth() + 1;
       const day = date.getDay();
 
@@ -214,6 +223,15 @@ describe('Date helpers', () => {
     it('When a date string with a past month is passed, expect false', () => {
       const date = getDecreasedDate();
       const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDay();
+
+      expect(isCurrentMonth(`${year}-${month}-${day}`)).toEqual(false);
+    });
+
+    it('When a date string with a past year is passed, expect false', () => {
+      const date = new Date();
+      const year = date.getFullYear() - 1;
       const month = date.getMonth() + 1;
       const day = date.getDay();
 

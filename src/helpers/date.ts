@@ -48,6 +48,36 @@ export const formatYear = (value: string | Date): string => {
 };
 
 /**
+ * Calculates the difference in months between two dates
+ *
+ * @param startDate the start date of the interval to be calculated - can be a date string or a Date.
+ * @param endDate the end date of the interval to be calculated - can be a date string or a Date.
+ *
+ * @return a number with the difference
+ *
+ * @example
+ * monthsDiff('2021-01-14', '2021-03-14')
+ * // -> 2
+ */
+export const monthsDiff = (
+  startDate: string | Date,
+  endDate: string | Date
+): number => {
+  const date1 = getDateInstance(startDate);
+  const date2 = getDateInstance(endDate);
+
+  if (!date1 || !date2) return 0;
+
+  const yearsDiff = date2.getFullYear() - date1.getFullYear();
+
+  let monthsDiff = yearsDiff * 12;
+  monthsDiff -= date1.getMonth();
+  monthsDiff += date2.getMonth();
+
+  return monthsDiff;
+};
+
+/**
  * Increases by one the month of a date string or a Date
  *
  * @param date date to be increased - should be a Date
@@ -115,16 +145,7 @@ export const isFutureMonth = (value: string | Date): boolean => {
 
   if (!date) return false;
 
-  const today = new Date();
-  const valueMonth = date.getMonth();
-  const valueYear = date.getFullYear();
-  const currentMonth = today.getMonth();
-  const currentYear = today.getFullYear();
-
-  if (valueYear > currentYear) return true;
-  if (valueMonth > currentMonth) return true;
-
-  return false;
+  return monthsDiff(new Date(), date) > 0;
 };
 
 /**
@@ -150,34 +171,4 @@ export const isCurrentMonth = (value: string | Date): boolean => {
   const currentYear = today.getFullYear();
 
   return valueYear === currentYear && valueMonth === currentMonth;
-};
-
-/**
- * Calculates the difference in months between two dates
- *
- * @param startDate the start date of the interval to be calculated - can be a date string or a Date.
- * @param endDate the end date of the interval to be calculated - can be a date string or a Date.
- *
- * @return a number with the difference
- *
- * @example
- * monthsDiff('2021-01-14', '2021-03-14')
- * // -> 2
- */
-export const monthsDiff = (
-  startDate: string | Date,
-  endDate: string | Date
-): number => {
-  const date1 = getDateInstance(startDate);
-  const date2 = getDateInstance(endDate);
-
-  if (!date1 || !date2) return 0;
-
-  const yearsDiff = date2.getFullYear() - date1.getFullYear();
-
-  let monthsDiff = yearsDiff * 12;
-  monthsDiff -= date1.getMonth();
-  monthsDiff += date2.getMonth();
-
-  return monthsDiff;
 };
