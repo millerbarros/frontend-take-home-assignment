@@ -41,7 +41,7 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
   const [focussed, setFocus] = useState(false);
   const [focusing, setFocusing] = useState(false);
 
-  const hiddenInputRef = useRef<HTMLInputElement>();
+  const hiddenButtonRef = useRef<HTMLButtonElement | null>();
 
   const prevMonth = useMemo(() => decreaseDateMonth(isoDate), [isoDate]);
   const nextMonth = useMemo(() => increaseDateMonth(isoDate), [isoDate]);
@@ -68,7 +68,7 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
   }, [canDecrease, prevMonth, onChange]);
 
   const applyFocus = () => {
-    hiddenInputRef.current?.focus();
+    hiddenButtonRef.current?.focus();
   };
 
   // Handle value props changes
@@ -94,7 +94,7 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
   useEffect(() => {
     if (!focussed) return;
 
-    const inputElement = hiddenInputRef.current;
+    const inputElement = hiddenButtonRef.current;
 
     if (!inputElement) return;
 
@@ -136,7 +136,7 @@ export const MonthInput = ({ value, onChange, tabIndex }: Props) => {
       }}
     >
       <StyledHiddenButton
-        ref={hiddenInputRef}
+        ref={elRef => (hiddenButtonRef.current = elRef)}
         onFocus={() => setFocus(true)}
         onBlur={() => !focusing && setFocus(false)}
         tabIndex={tabIndex}
