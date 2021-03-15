@@ -14,6 +14,9 @@ module.exports = {
     '\\.(svg)$': '<rootDir>/spec/empty-component.js',
     ...jestModuleNameMapper.default('tsconfig.json')
   },
-  setupFilesAfterEnv: ['<rootDir>spec/setup.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>spec/setup.js',
+    '@testing-library/jest-dom/extend-expect'
+  ],
   moduleDirectories: ['node_modules', 'src']
 };
