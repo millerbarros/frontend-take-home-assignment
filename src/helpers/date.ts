@@ -1,5 +1,13 @@
-const getDateInstance = (value: string | Date): Date =>
-  typeof value === 'string' ? new Date(value) : value;
+const getDateInstance = (value: string | Date): Date | null => {
+  if (!value) return null;
+
+  const date =
+    typeof value === 'string' ? new Date(value) : new Date(value.getTime());
+
+  if (Number.isNaN(date.getTime())) return null;
+
+  return date;
+};
 
 /**
  * Formats a date string or a Date to a month string
@@ -14,6 +22,8 @@ const getDateInstance = (value: string | Date): Date =>
  */
 export const formatMonth = (value: string | Date): string => {
   const date = getDateInstance(value);
+
+  if (!date) return '';
 
   return new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date);
 };
@@ -32,13 +42,15 @@ export const formatMonth = (value: string | Date): string => {
 export const formatYear = (value: string | Date): string => {
   const date = getDateInstance(value);
 
+  if (!date) return '';
+
   return date.getFullYear().toString();
 };
 
 /**
  * Increases by one the month of a date string or a Date
  *
- * @param value value to be increased - can be a date string or a Date
+ * @param date date to be increased - should be a Date
  *
  * @return A new Date with the month increased
  *
@@ -46,27 +58,25 @@ export const formatYear = (value: string | Date): string => {
  * increaseDateMonth('2021-03-14')
  * // -> Date('2021-04-14')
  */
-export const increaseDateMonth = (value: string | Date): Date => {
-  const date = getDateInstance(value);
+export const increaseDateMonth = (date: string | Date): Date => {
+  let newDate = getDateInstance(date);
 
-  const currentMonth = date.getMonth();
-  const currentYear = date.getFullYear();
+  if (!newDate) {
+    newDate = new Date();
+  }
 
-  const isSameYear = currentMonth < 11;
+  const currentMonth = newDate.getMonth();
+  const nextMonth = currentMonth + 1;
 
-  const nextMonth = isSameYear ? currentMonth + 1 : 0;
-  const nextYear = isSameYear ? currentYear : +currentYear + 1;
+  newDate.setMonth(nextMonth);
 
-  date.setMonth(nextMonth);
-  date.setFullYear(nextYear);
-
-  return date;
+  return newDate;
 };
 
 /**
  * Decreases by one the month of a date string or a Date
  *
- * @param value value to be decreased - can be a date string or a Date
+ * @param date date to be decreased - should be a Date
  *
  * @return A new Date with the month decreased
  *
@@ -74,21 +84,19 @@ export const increaseDateMonth = (value: string | Date): Date => {
  * decreaseDateMonth('2021-03-14')
  * // -> Date('2021-02-14')
  */
-export const decreaseDateMonth = (value: string | Date): Date => {
-  const date = getDateInstance(value);
+export const decreaseDateMonth = (date: string | Date): Date => {
+  let newDate = getDateInstance(date);
 
-  const currentMonth = date.getMonth();
-  const currentYear = date.getFullYear();
+  if (!newDate) {
+    newDate = new Date();
+  }
 
-  const isSameYear = currentMonth > 0;
+  const currentMonth = newDate.getMonth();
+  const prevMonth = currentMonth - 1;
 
-  const prevMonth = isSameYear ? currentMonth - 1 : 11;
-  const prevYear = isSameYear ? currentYear : +currentYear - 1;
+  newDate.setMonth(prevMonth);
 
-  date.setMonth(prevMonth);
-  date.setFullYear(prevYear);
-
-  return date;
+  return newDate;
 };
 
 /**
@@ -104,8 +112,10 @@ export const decreaseDateMonth = (value: string | Date): Date => {
  */
 export const isFutureMonth = (value: string | Date): boolean => {
   const date = getDateInstance(value);
-  const today = new Date();
 
+  if (!date) return false;
+
+  const today = new Date();
   const valueMonth = date.getMonth();
   const valueYear = date.getFullYear();
   const currentMonth = today.getMonth();
@@ -130,8 +140,10 @@ export const isFutureMonth = (value: string | Date): boolean => {
  */
 export const isCurrentMonth = (value: string | Date): boolean => {
   const date = getDateInstance(value);
-  const today = new Date();
 
+  if (!date) return false;
+
+  const today = new Date();
   const valueMonth = date.getMonth();
   const valueYear = date.getFullYear();
   const currentMonth = today.getMonth();
@@ -158,6 +170,9 @@ export const monthsDiff = (
 ): number => {
   const date1 = getDateInstance(startDate);
   const date2 = getDateInstance(endDate);
+
+  if (!date1 || !date2) return 0;
+
   const yearsDiff = date2.getFullYear() - date1.getFullYear();
 
   let monthsDiff = yearsDiff * 12;
