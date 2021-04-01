@@ -1,16 +1,22 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
 // COMPONENTS
 import { Header } from '~/shared/components/Header';
 
+// TYPES
+import { DefaultLayoutProps } from './types';
+
 // STYLED COMPONENTS
 import { StyledMain } from './DefualtLayout.styles';
 
-export const DefaultLayout = ({ children }: PropsWithChildren<{}>) => {
+export const DefaultLayout = ({
+  children,
+  large = false
+}: DefaultLayoutProps) => {
   return (
     <>
       <Header />
-      <StyledMain>{children}</StyledMain>
+      <StyledMain large={large}>{children}</StyledMain>
     </>
   );
 };

@@ -1,3 +1,6 @@
 import { useFetch } from './useFetch';
 
-export const useListGoals = () => useFetch('/goals');
+// TYPES
+import { Goal } from '../types/goal';
+
+export const useListGoals = () => useFetch<Goal[]>('/goals');

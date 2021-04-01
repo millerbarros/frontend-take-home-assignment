@@ -34,10 +34,8 @@ export const useFetch = <DataType>(
   };
 
   useEffect(() => {
-    if (!initialFetching) return;
-
     fetchData();
-  }, [initialFetching]);
+  }, []);
 
   return {
     isFetching,

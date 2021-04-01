@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
+// TYPES
+import { DefaultLayoutProps } from './types';
+
 // STYLES
 import { toREM } from '~/styles/functions';
 import { breakpointMin } from '~/styles/mixins';
 import { HEADER, SPACING } from '~/styles/variables';
 
-export const StyledMain = styled.main`
+export const StyledMain = styled.main<DefaultLayoutProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +18,7 @@ export const StyledMain = styled.main`
   margin: 0 auto;
 
   ${breakpointMin.md`
-    max-width: ${toREM('580px')};
+    max-width: ${({ large }) => (large ? toREM('1136px') : toREM('580px'))};
   `}
 
   ${breakpointMin.lg`
