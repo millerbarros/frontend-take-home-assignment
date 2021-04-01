@@ -1,8 +1,8 @@
 import React from 'react';
-import { cleanup, render, screen } from '../test-utils';
+import { cleanup, render, screen } from '../../test-utils';
 
 // COMPONENTS
-import { GoalAvatar } from '~/components/GoalAvatar';
+import { GoalAvatar } from '~/shared/components/GoalAvatar';
 
 const TEST_ID = 'test-goal-avatar';
 

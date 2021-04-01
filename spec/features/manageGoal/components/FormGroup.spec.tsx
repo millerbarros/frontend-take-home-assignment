@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-import { cleanup, render, screen } from '../test-utils';
+import { cleanup, render, screen } from '../../../test-utils';
 
 // COMPONENTS
-import { FormGroup } from '~/components/FormGroup';
+import { FormGroup } from '~/features/manageGoal/components/FormGroup';
 
 const TEST_ID = 'test-form-group';
 

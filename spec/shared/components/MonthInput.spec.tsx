@@ -1,11 +1,11 @@
 import React from 'react';
-import { cleanup, render, fireEvent, screen } from '../test-utils';
+import { cleanup, render, fireEvent, screen } from '../../test-utils';
 
 // COMPONENTS
-import { MonthInput } from '~/components/MonthInput';
+import { MonthInput } from '~/features/manageGoal/components/MonthInput';
 
 // HELPERS
-import { increaseDateMonth } from '~/helpers/date';
+import { increaseDateMonth } from '~/shared/helpers/date';
 
 const TEST_ID = 'test-month-input';
 const FOCUS_CONTROLLER_TEST_ID = 'test-focus-controller';

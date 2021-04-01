@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 
 // COMPONENTS
-import { Header } from '~/components/Header';
+import { Header } from '~/shared/components/Header';
 
 // STYLED COMPONENTS
 import { StyledMain } from './DefualtLayout.styles';

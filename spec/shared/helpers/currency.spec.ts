@@ -1,4 +1,4 @@
-import { formatCurrency } from '~/helpers/currency';
+import { formatCurrency } from '~/shared/helpers/currency';
 
 describe('Currency helpers', () => {
   describe('formatCurrency', () => {

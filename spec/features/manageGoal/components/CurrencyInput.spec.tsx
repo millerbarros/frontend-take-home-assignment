@@ -1,8 +1,8 @@
 import React from 'react';
-import { cleanup, render, fireEvent, screen } from '../test-utils';
+import { cleanup, render, fireEvent, screen } from '../../../test-utils';
 
 // COMPONENTS
-import { CurrencyInput } from '~/components/CurrencyInput';
+import { CurrencyInput } from '~/features/manageGoal/components/CurrencyInput';
 
 const TEST_ID = 'test-currency-input';
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { cleanup, render, fireEvent, screen } from '../test-utils';
+import { cleanup, render, fireEvent, screen } from '../../test-utils';
 
 // COMPONENTS
-import { Button } from '~/components/Button';
+import { Button } from '~/shared/components/Button';
 
 const TEST_ID = 'test-button';
 

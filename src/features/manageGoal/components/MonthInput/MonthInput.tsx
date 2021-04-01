@@ -15,7 +15,7 @@ import {
   decreaseDateMonth,
   isFutureMonth,
   isCurrentMonth
-} from '~/helpers/date';
+} from '~/shared/helpers/date';
 
 // STYLES
 import {

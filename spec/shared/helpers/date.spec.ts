@@ -6,7 +6,7 @@ import {
   isFutureMonth,
   isCurrentMonth,
   monthsDiff
-} from '~/helpers/date';
+} from '~/shared/helpers/date';
 
 const getIncreasedDate = () => {
   const date = new Date();

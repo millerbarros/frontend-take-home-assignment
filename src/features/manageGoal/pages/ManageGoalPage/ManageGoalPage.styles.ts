@@ -1,30 +1,15 @@
 import styled from 'styled-components';
 
 // COMPONENTS
-import { Button } from '~/components/Button';
-import { InfoPanel } from '~/components/InfoPanel';
+import { Button } from '~/shared/components/Button';
+import { InfoPanel } from '../../components/InfoPanel';
 
 // STYLES
 import { toREM } from '~/styles/functions';
 import { breakpointMin } from '~/styles/mixins';
-import { COLOR, SPACING } from '~/styles/variables';
+import { SPACING } from '~/styles/variables';
 
-export const StyledPageTitle = styled.h1`
-  width: 100%;
-  color: ${COLOR.brandPrimaryColor};
-  margin: 0;
-  padding: ${SPACING.lg} ${SPACING.md} ${SPACING.md};
-  font-size: ${toREM('20px')};
-  font-weight: normal;
-  text-align: center;
-
-  ${breakpointMin.lg`
-    font-size: ${toREM('18px')};
-    padding: ${SPACING.xl} ${SPACING.md} ${SPACING.md};
-  `}
-`;
-
-export const StyledMainPageForm = styled.form`
+export const StyledManageGoalForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +21,7 @@ export const StyledMainPageForm = styled.form`
   `}
 `;
 
-export const StyledMainPageFormGrid = styled.div`
+export const StyledManageGoalFormGrid = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;

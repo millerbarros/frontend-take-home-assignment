@@ -1,8 +1,8 @@
 import React from 'react';
-import { cleanup, render, screen } from '../test-utils';
+import { cleanup, render, screen } from '../../test-utils';
 
 // COMPONENTS
-import { Card } from '~/components/Card';
+import { Card } from '~/shared/components/Card';
 
 const TEST_ID = 'test-card';
 

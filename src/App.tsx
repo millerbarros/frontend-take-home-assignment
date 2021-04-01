@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 // PAGES
-import { MainPage } from '~/pages/MainPage';
+import { ManageGoalPage } from '~/features/manageGoal/pages/ManageGoalPage';
 
 // STYLED
 import { Normalize } from 'styled-normalize';
@@ -15,7 +15,7 @@ const App: React.FunctionComponent = () => {
       <GlobalStyledApp />
 
       {/* Insert routing logic here */}
-      <MainPage />
+      <ManageGoalPage />
     </ThemeProvider>
   );
 };

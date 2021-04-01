@@ -1,31 +1,31 @@
 import React, { FormEvent, useMemo, useState } from 'react';
 
 // HELPERS
-import { formatMonth, formatYear, monthsDiff } from '~/helpers/date';
-import { formatCurrency } from '~/helpers/currency';
+import { formatMonth, formatYear, monthsDiff } from '~/shared/helpers/date';
+import { formatCurrency } from '~/shared/helpers/currency';
 
 // COMPONENTS
-import { Card } from '~/components/Card';
-import { CurrencyInput } from '~/components/CurrencyInput';
-import { GoalAvatar } from '~/components/GoalAvatar';
-import { FormGroup } from '~/components/FormGroup';
-import { MonthInput } from '~/components/MonthInput';
+import { CurrencyInput } from '../../components/CurrencyInput';
+import { FormGroup } from '../../components/FormGroup';
+import { MonthInput } from '../../components/MonthInput';
+import { Card } from '~/shared/components/Card';
+import { GoalAvatar } from '~/shared/components/GoalAvatar';
+import { PageTitle } from '~/shared/components/PageTitle';
 import { DefaultLayout } from '~/layouts/Default';
 
 // STYLED COMPONENTS
 import {
-  StyledPageTitle,
-  StyledMainPageForm,
-  StyledMainPageFormGrid,
+  StyledManageGoalForm,
+  StyledManageGoalFormGrid,
   StyledButton,
   StyledInfoPanel
-} from './MainPage.styles';
+} from './ManageGoalPage.styles';
 
 // ASSETS
 import DollarSignIcon from '~/assets/icons/dollar-sign.svg';
 import HouseIcon from '~/assets/icons/house.svg';
 
-export const MainPage = () => {
+export const ManageGoalPage = () => {
   const [amount, setAmount] = useState('25000');
   const [goalDate, setGoalDate] = useState(new Date().toISOString());
 
@@ -41,9 +41,9 @@ export const MainPage = () => {
 
   return (
     <DefaultLayout>
-      <StyledPageTitle>
+      <PageTitle>
         Let{"'"}s plan your <strong>saving goal</strong>.
-      </StyledPageTitle>
+      </PageTitle>
 
       <Card>
         <GoalAvatar
@@ -52,8 +52,8 @@ export const MainPage = () => {
           subtitle="Saving goal"
         />
 
-        <StyledMainPageForm onSubmit={onSubmit}>
-          <StyledMainPageFormGrid>
+        <StyledManageGoalForm onSubmit={onSubmit}>
+          <StyledManageGoalFormGrid>
             <FormGroup label="Total amount" htmlFor="amount">
               <CurrencyInput
                 id="amount"
@@ -67,7 +67,7 @@ export const MainPage = () => {
             <FormGroup label="Reach goal by" htmlFor="goal">
               <MonthInput value={goalDate} onChange={setGoalDate} />
             </FormGroup>
-          </StyledMainPageFormGrid>
+          </StyledManageGoalFormGrid>
 
           <StyledInfoPanel
             title="Monthly amount"
@@ -82,7 +82,7 @@ export const MainPage = () => {
           </StyledInfoPanel>
 
           <StyledButton>Confirm</StyledButton>
-        </StyledMainPageForm>
+        </StyledManageGoalForm>
       </Card>
     </DefaultLayout>
   );
